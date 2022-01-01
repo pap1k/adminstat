@@ -36,7 +36,7 @@ class AdminDaemon:
 
     def add(self, nick, action, param = "") -> Admin:
         #print(nick, action, param)
-        admin_ref = self.search(nick)
+        admin_ref = self._search(nick)
         if not admin_ref:
             admin_ref = self._create(nick)
 
@@ -51,7 +51,7 @@ class AdminDaemon:
         return admin_ref
 
     def get(self, nick) -> Admin:
-        admin_ref = self.search(nick)
+        admin_ref = self._search(nick)
         if not admin_ref:
             return None
         return admin_ref
@@ -61,7 +61,7 @@ class AdminDaemon:
         self.admins.append(ref)
         return ref
 
-    def search(self, nick) -> Admin:
+    def _search(self, nick) -> Admin:
         for adm in self.admins:
             if adm.nick.lower() == nick.lower():
                 return adm
